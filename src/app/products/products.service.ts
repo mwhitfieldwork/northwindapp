@@ -9,7 +9,7 @@ import {catchError, tap, map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ProductsService {
-  url: string = 'api/product';
+  url: string = 'http://localhost:54133/getall';
   dogUrl:string = 'https://dog.ceo/api/breeds/list/all';
 
   nwDataChanged:BehaviorSubject<any>;
