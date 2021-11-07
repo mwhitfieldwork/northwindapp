@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProductsService }from './products.service';
 import {IProducts } from './products';
 
-//dialog 
+//dialog
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog'
 import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray} from '@angular/forms';
 
@@ -23,10 +23,10 @@ export class ProductsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   displayedColumns: string[] = [
-    'displayName',
-    'company',
-    'title',
-    'email',
+    'displayname',
+    'quantity',
+    'price',
+    'discontinued',
     'rating',
     'edit'
   ];
@@ -48,8 +48,8 @@ export class ProductsComponent implements OnInit {
 
   getProducts(){
     this._productsService.getProducts()
-    .subscribe(products => { 
-      let ratedProducts = this.addRating(products)    
+    .subscribe(products => {
+      let ratedProducts = this.addRating(products)
       this.product = ratedProducts;
       this.dataSource = new MatTableDataSource<IProducts>(ratedProducts);
       this.dataSource.paginator = this.paginator;
@@ -107,11 +107,11 @@ export class ProductsComponent implements OnInit {
     let evenDivisors = temp > LimitOf100PercentRatings ? LimitOf100PercentRatings : temp ;
     let moduloRemainder = (((percent % 20) / 20) *100).toString() +'%';
     let modulo = (((percent % 20) / 20) *100);
-    
+
     if(modulo != 0){
       remainder = 5 - evenDivisors;
     }
-    
+
     for(let s=0; s<evenDivisors; s++){
     this.index = s;
       if(s <= evenDivisorLimit){
@@ -120,12 +120,12 @@ export class ProductsComponent implements OnInit {
         return this.stars;
       }
     }
-    
-    
+
+
     if(this.index < evenDivisorLimit ){
       this.stars.push(moduloRemainder);
     }
-    
+
     if(modulo < ratingFullCapacityNumb && this.stars.length < 5){
     let otherstars = LimitOf100PercentRatings - this.stars.length;
       for(let m=0; m<otherstars; m++){
@@ -135,7 +135,7 @@ export class ProductsComponent implements OnInit {
     this.starList.push(this.stars);
     return this.stars;
     }
-    
+
     getFill(i){
     return 'url(#F1g' + i + ')';
     }

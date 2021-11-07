@@ -9,7 +9,7 @@ import {catchError, tap, map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ProductsService {
-  url: string = 'api/product';
+  url: string = 'http://localhost:54133/';
   dogUrl:string = 'https://dog.ceo/api/breeds/list/all';
 
   nwDataChanged:BehaviorSubject<any>;
@@ -19,7 +19,7 @@ export class ProductsService {
    }
 
   getProducts():Observable<IProducts[]> {
-    var response = this._http.get<IProducts[]>(this.url)
+    var response = this._http.get<IProducts[]>(this.url + 'GetAll')
     .pipe(
       tap(items => {
         this.nwDataChanged.next(items);
