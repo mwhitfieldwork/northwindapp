@@ -11,6 +11,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { LoginComponent } from './login/login.component';
 
 
 const routes : Routes =  [
@@ -24,7 +25,8 @@ const routes : Routes =  [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
