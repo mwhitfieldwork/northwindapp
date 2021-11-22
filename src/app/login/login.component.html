@@ -1,1 +1,7 @@
-<p>login works!</p>
+<div>
+    <form [formData]="loginForm" (ngSubmit)="LoginCheck()">
+        <input type="text" placeholder="username" value="username" />
+        <input type="text" placeholder="password"  value="password"/>
+        <input type="submit" value="Submit">
+    </form>
+</div>
