@@ -11,10 +11,12 @@ import {RouterModule, Routes} from '@angular/router';
 
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { LoginComponent } from './login/login.component';
+import { LoginModule } from './login/login.module';
 
 
 const routes : Routes =  [
+  {path:'login',
+  loadChildren: './login/login.module#LoginModule'},
   {path:'products',
   loadChildren: './products/products.module#ProductsModule'},
   {path:'dashboard',
@@ -26,7 +28,6 @@ const routes : Routes =  [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ const routes : Routes =  [
     InMemoryWebApiModule.forRoot(ProductData,{ dataEncapsulation: false,
       passThruUnknownUrl: true }),
     ProductsModule,
-    DashboardModule
+    DashboardModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
