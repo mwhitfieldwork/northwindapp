@@ -24,7 +24,10 @@ export class LoginService {
 
    LoginFromAPI(user: User): Observable<any> {
 
-    return this._http.post<User>(this.url, JSON.stringify(user), this.httpOptions)
+    let response  = this._http.post(this.url, JSON.stringify(user), this.httpOptions)
+    .pipe(map(response => response),
+    catchError(this.handleError), /*tap(response => console.dir(response))*/)
+    return response;  
   
   }
 
