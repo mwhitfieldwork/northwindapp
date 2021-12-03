@@ -8,6 +8,7 @@ import {User} from '../shared/models/user';
   providedIn: 'root'
 })
 export class LoginService {
+  prodURL:string  = 'http://localhost:57709/Login'
   url: string = 'http://localhost:54133/Login';
 
   nwDataChanged:BehaviorSubject<any>;
@@ -24,7 +25,7 @@ export class LoginService {
 
    LoginFromAPI(user: User): Observable<any> {
 
-    let response  = this._http.post(this.url, JSON.stringify(user), this.httpOptions)
+    let response  = this._http.post(this.prodURL, JSON.stringify(user), this.httpOptions)
     .pipe(map(response => response),
     catchError(this.handleError), /*tap(response => console.dir(response))*/)
     return response;  
