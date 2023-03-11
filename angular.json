@@ -121,5 +121,8 @@
         }
       }
     }},
-  "defaultProject": "nwapp"
+  "defaultProject": "nwapp",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -15,8 +15,8 @@ import { LoginModule } from './login/login.module';
 
 
 const routes : Routes =  [
-  {path:'login',
-  loadChildren: './login/login.module#LoginModule'},
+  /*{path:'login',
+  loadChildren: './login/login.module#LoginModule'},*/
   {path:'products',
   loadChildren: './products/products.module#ProductsModule'},
   {path:'dashboard',

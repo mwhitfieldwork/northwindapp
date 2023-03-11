@@ -5,18 +5,18 @@
 
       <ng-container matColumnDef="displayName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.ProductName}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
-        <td mat-cell *matCellDef="let element"> {{element.QuantityPerUnit}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.quantityPerUnit}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </th>
-        <td mat-cell *matCellDef="let element"> {{element.UnitPrice}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
       </ng-container>
 
       <ng-container matColumnDef="rating">
@@ -34,7 +34,7 @@
 
       <ng-container matColumnDef="discontinued">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Discontinued </th>
-        <td mat-cell *matCellDef="let element"> {{element.Discontinued}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.discontinued}} </td>
       </ng-container>
 
 

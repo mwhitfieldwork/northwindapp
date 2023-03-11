@@ -12,7 +12,8 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardModule } from '../dashboard/dashboard.module'
 
 const routes:Routes = [
-  {path: 'products', component: ProductsComponent}
+  {path: '', component: ProductsComponent}
+  //{path: 'products', component: ProductsComponent}
 ]
 
 @NgModule({
