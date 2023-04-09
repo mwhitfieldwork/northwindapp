@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IProducts } from  './products';
+import { Product } from '../_models/product';
 import {catchError, tap, map } from 'rxjs/operators'
 
 
@@ -17,8 +17,8 @@ export class ProductsService {
     this.nwDataChanged = new BehaviorSubject([]);
    }
 
-  getProducts():Observable<IProducts[]> {
-    var response = this._http.get<IProducts[]>(this.url)
+  getProducts():Observable<Product[]> {
+    var response = this._http.get<Product[]>(this.url)
     .pipe(
       tap(items => {
         this.nwDataChanged.next(items);
@@ -30,9 +30,9 @@ export class ProductsService {
     return response
   }
 
-  getProduct(productId:string):Observable<IProducts> {
+  getProduct(productId:string):Observable<Product> {
     let url = `${this.url}${productId}`;
-    var response = this._http.get<IProducts>(url)
+    var response = this._http.get<Product>(url)
     .pipe(
       tap(item => {
         this.nwDataChanged.next(item);

@@ -15,5 +15,6 @@ export interface Product {
     discontinued: boolean,
     category: Category,
     supplier: Supplier,
-    orderDetails: OrderDetails
+    orderDetails: OrderDetails,
+    rating:number;
 }
