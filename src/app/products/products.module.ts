@@ -9,7 +9,8 @@ import { DialogOverviewExampleDialog } from './products.component';
 
 import { ProductsService } from './products.service';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardModule } from '../dashboard/dashboard.module'
+import { DashboardModule } from '../dashboard/dashboard.module';
+import { ProductDetailComponent } from './details/product-detail.component'
 
 const routes:Routes = [
   {path: '', component: ProductsComponent}
@@ -19,7 +20,8 @@ const routes:Routes = [
 @NgModule({
   declarations: [
     ProductsComponent,
-    DialogOverviewExampleDialog],
+    DialogOverviewExampleDialog,
+    ProductDetailComponent],
   providers:[ProductsService],
   exports:[
     ProductsComponent,
