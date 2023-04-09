@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
        this.dashboardData = nwdata;
         this.interestsHorizontalGraph();
         this.skillsVerticleGraph();
-        this.getNBAData();
+        //this.getNBAData();
     })
 
     // this.graphsPoints = [
@@ -152,6 +152,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.popularSkills)
   }
 
+  /*
   getNBAData(){
     this.sub2 =  this._productsService.getDogData()
     .subscribe(dogdata => {
@@ -173,6 +174,7 @@ export class DashboardComponent implements OnInit {
      console.log(this.doglist)
     });
   }
+  */
 
   
   ngOnDestroy(): void

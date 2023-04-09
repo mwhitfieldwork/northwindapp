@@ -1,4 +1,6 @@
 export interface IProducts {
+    id: number;
+    productName: string;
     displayName?: string;
     company?: string;
     title?: string;
@@ -20,4 +22,6 @@ export interface IProducts {
     skills?: any;
     interests?: any;
     rating:number;
+    unitPrice:number;
+    quantityPerUnit:number;
 }

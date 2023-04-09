@@ -13,8 +13,9 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProductDetailComponent } from './details/product-detail.component'
 
 const routes:Routes = [
-  {path: '', component: ProductsComponent}
-  //{path: 'products', component: ProductsComponent}
+  {path: '', component: ProductsComponent},
+  {path: 'details/new', component: ProductDetailComponent},
+  {path: 'details/:id', component: ProductDetailComponent}
 ]
 
 @NgModule({
