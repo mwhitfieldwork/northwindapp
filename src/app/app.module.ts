@@ -21,7 +21,8 @@ const routes : Routes =  [
   loadChildren: './products/products.module#ProductsModule'},
   {path:'dashboard',
   loadChildren: './dashboard/dashboard.module#DashboardModule'},
-  {path:'', redirectTo:'/dashboard', pathMatch:'full'}
+  {path:'', redirectTo:'/dashboard', pathMatch:'full'},
+  {path:'**', redirectTo:'/dashboard', pathMatch:'full'}
 ]
 
 
