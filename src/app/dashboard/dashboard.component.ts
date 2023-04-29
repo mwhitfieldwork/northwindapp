@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.sub =  this._productsService.getProducts()
     .subscribe(nwdata => {
-       this.dashboardData = nwdata;
+       //this.dashboardData = nwdata;
         this.interestsHorizontalGraph();
         this.skillsVerticleGraph();
         //this.getNBAData();

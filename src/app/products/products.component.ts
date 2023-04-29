@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addRating(products:Product[]){
-    products.forEach(x => x.rating = this.getRandomInt(1,100))
+    //products.forEach(x => x.rating = this.getRandomInt(1,100))
     console.log(products)
     return products;
   }
