@@ -12,6 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
+import { PhonemaskDirective } from './_directives/phonemask.directive';
 
 
 const routes : Routes =  [
@@ -29,6 +30,7 @@ const routes : Routes =  [
 @NgModule({
   declarations: [
     AppComponent,
+    PhonemaskDirective,
   ],
   imports: [
     BrowserModule,
