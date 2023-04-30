@@ -1,10 +1,11 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[appPhonemask]'
+  selector: '[digit-mask]'
 })
 export class PhonemaskDirective {
 
-  constructor() { }
-
+  constructor(private element:ElementRef) {
+      console.log(this.element);
+   }
 }

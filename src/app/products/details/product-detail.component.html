@@ -58,7 +58,20 @@
                 </span>
             </span>  
 
-        </div>       
+        </div>    
+        
+        <div class="form-group">
+          <label for="name">Phone number</label>
+          <input type="text" class="form-control" id="name" formControlName="phone" digit-mask [ngClass]="{'is-invalid':!productForm.get('phone')?.valid &&
+          productForm.get('phone')?.touched}">
+
+          <span class="invalid-feedback">
+              <span *ngIf="productForm.get('phone').errors?.required">
+                Please enter a phone number.
+              </span>
+          </span>  
+
+      </div>         
         {{productForm.value | json}}         
     </form>    
   </div>

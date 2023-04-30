@@ -24,6 +24,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.fb.group({
       productname:['', Validators.required],
+      phone:['', Validators.required],
       unitPrice:['', Validators.required],
       quantity:['', Validators.required],
       rating:['', Validators.required],
@@ -39,15 +40,16 @@ export class ProductDetailComponent implements OnInit {
 
   callExistingProduct(){
     let productId = this.route.snapshot.paramMap.get('id');
-
-    this._productsService.getProduct(productId).subscribe(product => { 
-      this.ratedProduct = product;
-      this.productForm.get('productname').setValue(this.ratedProduct.productName)
-      this.productForm.get('quantity').setValue(this.ratedProduct.quantityPerUnit);
-      this.productForm.get('unitPrice').setValue(this.ratedProduct.unitPrice);
-      this.productForm.get('rating').setValue(this.ratedProduct.rating);
-    },
-    error => this.errorMessage = <any>error)
     
+    if(productId){
+      this._productsService.getProduct(productId).subscribe(product => { 
+        this.ratedProduct = product;
+        this.productForm.get('productname').setValue(this.ratedProduct.productName)
+        this.productForm.get('quantity').setValue(this.ratedProduct.quantityPerUnit);
+        this.productForm.get('unitPrice').setValue(this.ratedProduct.unitPrice);
+        this.productForm.get('rating').setValue(this.ratedProduct.rating);
+      },
+      error => this.errorMessage = <any>error)
+    }
   }
   }
