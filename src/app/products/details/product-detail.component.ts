@@ -27,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.productForm = this.fb.group({
       productname:['', Validators.required],
+      phone:['', Validators.required],
       unitPrice:['', Validators.required],
       quantity:['', Validators.required],
       rating:['', Validators.required],

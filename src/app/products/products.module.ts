@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { HttpClientModule} from '@angular/common/http';
-//import { MaterialModule } from '../shared/material/material.module';
+import { MaterialModule } from '../shared/material/material.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProductsComponent } from './products.component';
@@ -9,8 +9,9 @@ import { DialogOverviewExampleDialog } from './products.component';
 
 import { ProductsService } from './products.service';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { DashboardModule } from '../dashboard/dashboard.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProductDetailComponent } from './details/product-detail.component'
+import { PhonemaskDirective } from '../_directives/phonemask.directive';
 
 const routes:Routes = [
   {path: '', component: ProductsComponent},
@@ -21,6 +22,7 @@ const routes:Routes = [
 @NgModule({
   declarations: [
     ProductsComponent,
+    PhonemaskDirective,
     DialogOverviewExampleDialog,
     ProductDetailComponent],
   providers:[ProductsService],
@@ -31,10 +33,10 @@ const routes:Routes = [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    //MaterialModule,
+    MaterialModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    //DashboardModule
+    DashboardModule
   ]
 })
 export class ProductsModule { }
