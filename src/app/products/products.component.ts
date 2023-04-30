@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { ProductsService }from './products.service';
-import {IProducts } from './products';
+import {Product} from '../_models/product';
 
 //dialog 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog'
@@ -31,9 +31,9 @@ export class ProductsComponent implements OnInit {
     'edit'
   ];
 
-  product:IProducts[];
+  product:Product[];
   errorMessage:any;
-  dataSource: MatTableDataSource<IProducts>
+  dataSource: MatTableDataSource<Product>
   productID:number;
   stars:string[] = [];
   index:number
@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit {
     .subscribe(products => { 
       let ratedProducts = this.addRating(products)    
       this.product = ratedProducts;
-      this.dataSource = new MatTableDataSource<IProducts>(ratedProducts);
+      this.dataSource = new MatTableDataSource<Product>(ratedProducts);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit {
     error => this.errorMessage = <any>error)
   }
 
-  editProduct(product:IProducts){
+  editProduct(product:Product){
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '450px',
       data: product
@@ -86,8 +86,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  addRating(products:IProducts[]){
-    products.forEach(x => x.rating = this.getRandomInt(1,100))
+  addRating(products:Product[]){
+    //products.forEach(x => x.rating = this.getRandomInt(1,100))
     console.log(products)
     return products;
   }
