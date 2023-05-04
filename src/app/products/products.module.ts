@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProductDetailComponent } from './details/product-detail.component'
 import { PhonemaskDirective } from '../_directives/phonemask.directive';
+import { TooltipDirective}from '../_directives/tooltip.directive';
 
 const routes:Routes = [
   {path: '', component: ProductsComponent},
@@ -23,6 +24,7 @@ const routes:Routes = [
   declarations: [
     ProductsComponent,
     PhonemaskDirective,
+    TooltipDirective,
     DialogOverviewExampleDialog,
     ProductDetailComponent],
   providers:[ProductsService],

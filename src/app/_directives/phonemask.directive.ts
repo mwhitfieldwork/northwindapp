@@ -6,6 +6,7 @@ import { Directive, ElementRef, HostListener, HostBinding } from '@angular/core'
 export class PhonemaskDirective {
 
   @HostBinding('style.border')
+  //@HostBinding('class') calss= 'class1 class2 class3
   border:string
 
   @HostListener('input', ['$event']) // you can listend to a click or on change as well
