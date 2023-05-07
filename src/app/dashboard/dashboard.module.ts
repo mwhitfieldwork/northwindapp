@@ -5,6 +5,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { DashboardService } from './dashboard.service';
 import { RouterModule, Routes } from '@angular/router';
 import { NavComponent } from '../nav/nav.component';
+import { ConversionPipe } from '../_pipes/conversion.pipe';
 
 const routes:Routes =[
   {path: 'dashboard', component:DashboardComponent}
@@ -13,7 +14,8 @@ const routes:Routes =[
 @NgModule({
   declarations: [
     DashboardComponent,
-    NavComponent
+    NavComponent,
+    ConversionPipe
   ],
   providers:[DashboardService],
   imports: [

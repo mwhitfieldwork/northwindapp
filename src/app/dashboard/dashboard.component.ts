@@ -4,10 +4,18 @@ import { ProductsService } from '../products/products.service';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { ConversionPipe } from '../_pipes/conversion.pipe'; /// to use the pipe as a Provider
+
+interface File {
+  name: string,
+  size: any,
+  type: string
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers:[ConversionPipe]// allows a pipe to be injected
 })
 
 export class DashboardComponent implements OnInit {
@@ -25,12 +33,30 @@ export class DashboardComponent implements OnInit {
   maxcount:number = 100;
   mincount:number = 0;
   midcount:number = 50
+  files: File[];
+  mapped: File[];
 
-  constructor(private _productsService :ProductsService ) { 
+  constructor(private _productsService :ProductsService,private conversionPipe:ConversionPipe 
+    ) { 
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
+ 
+    this.files = [
+      { name: 'logo.svg', size: 2120109, type: 'image/svg' },
+      { name: 'banner.jpg', size: 18029, type: 'image/jpg' },
+      { name: 'background.png', size: 1784562, type: 'image/png' }
+    ];
+
+    this.mapped = this.files.map(file => { //this is a way that can e used to map the data using the pipe as a provider
+      return {
+        name: file.name,
+        type: file.type,
+        size: this.conversionPipe.transform(file.size)
+      };
+    });
+
     this.sub =  this._productsService.getProducts()
     .subscribe(nwdata => {
        //this.dashboardData = nwdata;

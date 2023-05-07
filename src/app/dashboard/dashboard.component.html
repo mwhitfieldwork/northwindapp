@@ -43,4 +43,16 @@
                 <!-- </mat-card> -->
             </div>
         </section>
+        <section>
+            <div>
+                  <div *ngFor="let file of files">
+                  <p>{{ file.name }}</p>
+                  <p>{{ file.size | filesize }}</p>
+                </div>
+                <div *ngFor="let file of mapped">  <!-- map way using conversion pipe as a provider --> 
+                    <p>{{ file.name }}</p>
+                    <p>{{ file.size  }}</p>
+                  </div>
+              </div>
+        </section>
 </main>
