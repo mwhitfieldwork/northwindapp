@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
       return {
         name: file.name,
         type: file.type,
-        size: this.conversionPipe.transform(file.size)
+        size: this.conversionPipe.transform(file.size, 'mb')
       };
     });
 
