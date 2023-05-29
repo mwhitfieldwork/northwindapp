@@ -12,6 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
+import { StockInventoryComponent } from './stock-inventory/containers/stock-inventory/stock-inventory/stock-inventory.component';
 
 
 const routes : Routes =  [
@@ -28,7 +29,8 @@ const routes : Routes =  [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StockInventoryComponent
   ],
   imports: [
     BrowserModule,
