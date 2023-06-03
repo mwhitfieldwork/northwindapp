@@ -1,1 +1,5 @@
-<p>stock-branch works!</p>
+       <div [formGroup]="parent"> <!-- Passess the formGroup to the child component -->
+        <div formGroupName="store" class="form-group">
+            <input type="text" formControlName="branch" placeholder="Branch ID">
+            <input type="text" formControlName="code" placeholder=" Manager Code">
+        </div>

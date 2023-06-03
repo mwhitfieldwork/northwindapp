@@ -12,8 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
-import { StockInventoryComponent } from './stock-inventory/containers/stock-inventory/stock-inventory/stock-inventory.component';
-
+import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
 
 const routes : Routes =  [
   /*{path:'login',
@@ -23,14 +22,14 @@ const routes : Routes =  [
   {path:'dashboard',
   loadChildren: './dashboard/dashboard.module#DashboardModule'},
   {path:'', redirectTo:'/dashboard', pathMatch:'full'},
- // {path:'**', redirectTo:'/dashboard', pathMatch:'full'}
+  {path:'restock',
+  loadChildren: './stock-inventory/stock-inventory.module'}
 ]
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StockInventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +40,8 @@ const routes : Routes =  [
       passThruUnknownUrl: true }),
     ProductsModule,
     DashboardModule,
-    LoginModule
+    LoginModule,
+    StockInventoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
