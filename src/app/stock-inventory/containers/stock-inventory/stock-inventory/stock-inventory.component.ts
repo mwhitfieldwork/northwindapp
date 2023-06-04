@@ -25,6 +25,18 @@ export class StockInventoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  getProducts(){
+    /*this._productsService.getProducts()
+    .subscribe(products => { 
+      let ratedProducts = products    
+  
+
+    },
+    error => this.errorMessage = <any>error)
+    */
+  }
+
   onSubmit(){
     console.log("submit", this.form.value);
   }
