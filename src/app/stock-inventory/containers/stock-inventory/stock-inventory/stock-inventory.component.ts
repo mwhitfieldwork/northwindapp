@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormArray} from '@angular/forms';
+import { Product } from 'src/app/_models/product';
+import { ProductStockService } from 'src/app/_services/product-stock.service';
+
 
 @Component({
   selector: 'app-stock-inventory',
@@ -7,7 +10,9 @@ import {FormControl, FormGroup, FormArray} from '@angular/forms';
   styleUrls: ['./stock-inventory.component.css']
 })
 export class StockInventoryComponent implements OnInit {
-
+  errorMessage:string;
+  stockProducts: Product[]
+  
   form = new FormGroup({
     store:new FormGroup({
       branch:new FormControl(''),
@@ -21,21 +26,21 @@ export class StockInventoryComponent implements OnInit {
 
   })
 
-  constructor() { }
+  constructor(private _productsService2: ProductStockService ) { }
 
   ngOnInit(): void {
   }
 
   getProducts(){
-    /*this._productsService.getProducts()
+    this._productsService2.getProducts()
     .subscribe(products => { 
-      let ratedProducts = products    
+      this.stockProducts = products    
   
 
     },
     error => this.errorMessage = <any>error)
-    */
   }
+ 
 
   onSubmit(){
     console.log("submit", this.form.value);
