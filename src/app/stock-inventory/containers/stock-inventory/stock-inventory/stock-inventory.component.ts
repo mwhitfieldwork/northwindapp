@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormArray} from '@angular/forms';
 import { Product } from 'src/app/_models/product';
 import { ProductStockService } from 'src/app/_services/product-stock.service';
@@ -10,8 +10,9 @@ import { ProductStockService } from 'src/app/_services/product-stock.service';
   styleUrls: ['./stock-inventory.component.css']
 })
 export class StockInventoryComponent implements OnInit {
+
   errorMessage:string;
-  stockProducts: Product[]
+  stockProducts: Product[];
   
   form = new FormGroup({
     store:new FormGroup({

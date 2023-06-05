@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Product } from 'src/app/_models/product';
 
 @Component({
   selector: 'app-stock-selector',
@@ -8,7 +9,11 @@ import { FormGroup } from '@angular/forms';
 })
 export class StockSelectorComponent implements OnInit {
   @Input()
-  parent:FormGroup; // parent form group
+  parent: FormGroup;
+
+  @Input()
+  stockProducts: Product[];
+   // parent form group
   
   constructor() { }
 
