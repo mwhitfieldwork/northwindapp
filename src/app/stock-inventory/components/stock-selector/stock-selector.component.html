@@ -1,2 +1,9 @@
 <div [formGroup]="parent"> 
+    <div formGroupName="selector">
+        <select formControlName="product_id">
+            <option *ngFor="let product of stockProducts" 
+            [value]="product.id"
+            >{{product.productName}}</option>
+        </select>
+    </div>
 </div>

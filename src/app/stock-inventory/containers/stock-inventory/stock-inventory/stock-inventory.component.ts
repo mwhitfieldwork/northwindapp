@@ -30,6 +30,7 @@ export class StockInventoryComponent implements OnInit {
   constructor(private _productsService2: ProductStockService ) { }
 
   ngOnInit(): void {
+    this.getProducts();
   }
 
   getProducts(){
