@@ -6,7 +6,8 @@
 
         <app-stock-selector
         [parent]="form"
-        [stockProducts]="stockProducts">
+        [stockProducts]="stockProducts"
+        (added)="addStock($event)">
         </app-stock-selector>
 
         <app-stock-products

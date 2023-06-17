@@ -19,13 +19,20 @@ export class StockInventoryComponent implements OnInit {
       branch:new FormControl(''),
       code:new FormControl(''),
     }),
-    selector: new FormGroup({
-      product_id:new FormControl(''),
-      quantity:new FormControl('10'),
-    }),
-    stock:new FormArray([])
+    selector: this.createStock({}),
+    stock:new FormArray([
+      this.createStock({product_id:1,quantity:10}),
+      this.createStock({product_id:2,quantity:20}),
+    ])
 
   })
+
+  createStock(stock){
+    return new FormGroup({
+      product_id: new FormControl(parseInt(stock.product_id,10) || ''),
+      quantity: new FormControl(stock.quantity || 10)   
+    });
+  }
 
   constructor(private _productsService2: ProductStockService ) { }
 
@@ -43,6 +50,10 @@ export class StockInventoryComponent implements OnInit {
     error => this.errorMessage = <any>error)
   }
  
+  addStock(stock){
+    const control = this.form.get('stock') as FormArray;
+    control.push(this.createStock(stock));
+  }
 
   onSubmit(){
     console.log("submit", this.form.value);
