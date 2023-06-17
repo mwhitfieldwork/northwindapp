@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormArray} from '@angular/forms';
+//import {FormControl, FormGroup, FormArray} from '@angular/forms'; FormControl is a diffrent way of doing it
+import {FormBuilder, FormGroup, FormArray} from '@angular/forms'; // Using Formbuilder is short hand
 import { Product } from 'src/app/_models/product';
 import { ProductStockService } from 'src/app/_services/product-stock.service';
 
@@ -10,17 +11,27 @@ import { ProductStockService } from 'src/app/_services/product-stock.service';
   styleUrls: ['./stock-inventory.component.css']
 })
 export class StockInventoryComponent implements OnInit {
+  
+  constructor(private _productsService2: ProductStockService , 
+    private fb:FormBuilder) { }
 
   errorMessage:string;
   stockProducts: Product[];
   
-  form = new FormGroup({
+   /*form = new FormGroup({
     store:new FormGroup({
       branch:new FormControl(''),
       code:new FormControl(''),
-    }),
+    }), Long hand */
+    form = this.fb.group({
+      store:this.fb.group ({
+        //branch:new FormControl(''), long hand
+        //code:new FormControl(''), long hand
+        branch:'', //Form builder short hand
+        code:'', //Form builder short hand
+      }),
     selector: this.createStock({}),
-    stock:new FormArray([
+    stock:this.fb.array([
       this.createStock({product_id:1,quantity:10}),
       this.createStock({product_id:2,quantity:20}),
     ])
@@ -28,13 +39,13 @@ export class StockInventoryComponent implements OnInit {
   })
 
   createStock(stock){
-    return new FormGroup({
-      product_id: new FormControl(parseInt(stock.product_id,10) || ''),
-      quantity: new FormControl(stock.quantity || 10)   
+    return this.fb.group({
+      product_id: parseInt(stock.product_id,10) || '',
+      quantity: stock.quantity || 10
     });
   }
 
-  constructor(private _productsService2: ProductStockService ) { }
+ 
 
   ngOnInit(): void {
     this.getProducts();
