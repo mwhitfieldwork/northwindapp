@@ -49,6 +49,10 @@ export class StockInventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+
+    this.form.get('stock').valueChanges.subscribe(stock => {
+      console.log(stock); //do this every time the stock field changes
+    });
   }
 
   getProducts(){
