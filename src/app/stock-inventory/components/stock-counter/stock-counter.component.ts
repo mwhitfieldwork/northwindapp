@@ -37,6 +37,35 @@ export class StockCounterComponent implements OnInit , ControlValueAccessor {
   @Input() max = 1000;
 
   value: number = 10;
+  focus:boolean;
+
+  onKeyDown(event: KeyboardEvent){
+    const handlers = {
+      ArrowDown:() => this.decrement(),
+      ArrowUp:() => this.increment(),
+    };
+
+    if(handlers[event.code]){
+      handlers[event.code](); //calls the increment or decrement function based on the event code
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.onTouch() // if the user presses a key that is not the up or down arrow
+  }
+
+  onBlur(event: FocusEvent){
+    this.focus = false;
+    event.preventDefault();
+    event.stopPropagation();
+    this.onTouch();
+  }
+
+  onFocus(event: FocusEvent){
+    this.focus = true;
+    event.preventDefault();
+    event.stopPropagation();
+    this.onTouch();
+  }
 
   constructor() { }
 
