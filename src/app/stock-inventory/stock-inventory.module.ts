@@ -7,6 +7,7 @@ import { StockProductsComponent } from './components/stock-products/stock-produc
 import { StockSelectorComponent } from './components/stock-selector/stock-selector.component';
 import { StockInventoryComponent } from './containers/stock-inventory/stock-inventory/stock-inventory.component';
 import { ProductStockService  } from '../_services/product-stock.service';
+import { StockCounterComponent } from './components/stock-counter/stock-counter.component';
 
 const routes:Routes =[
   {path: 'restock', component:StockInventoryComponent}
@@ -16,7 +17,8 @@ const routes:Routes =[
   declarations: [StockBranchComponent,
      StockProductsComponent, 
      StockSelectorComponent,
-     StockInventoryComponent
+     StockInventoryComponent,
+     StockCounterComponent
     ],
   imports: [
     CommonModule,
