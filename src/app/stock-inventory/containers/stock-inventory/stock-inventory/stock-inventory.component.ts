@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 //import {FormControl, FormGroup, FormArray} from '@angular/forms'; FormControl is a diffrent way of doing it
-import {FormBuilder, FormGroup, FormArray} from '@angular/forms'; // Using Formbuilder is short hand
+import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms'; // Using Formbuilder is short hand
 import { Product } from 'src/app/_models/product';
 import { ProductStockService } from 'src/app/_services/product-stock.service';
-
-
+import { StockValidators } from 'src/app/stock-inventory/containers/stock-inventory/stock-inventory/stock-inventory.validators';
 @Component({
   selector: 'app-stock-inventory',
   templateUrl: './stock-inventory.component.html',
@@ -27,8 +26,8 @@ export class StockInventoryComponent implements OnInit {
       store:this.fb.group ({
         //branch:new FormControl(''), long hand
         //code:new FormControl(''), long hand
-        branch:'', //Form builder short hand
-        code:'', //Form builder short hand
+        branch:['', [Validators.required,StockValidators.checkBranch]] ,//Form builder short hand
+        code:['', Validators.required] , //Form builder short hand
       }),
     selector: this.createStock({}),
     stock:this.fb.array([
