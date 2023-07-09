@@ -18,7 +18,12 @@
         [max]="1000"
         formControlName="quantity"> <!-- connects the custom control to the parent component   -->
         </app-stock-counter>        
-        <button type="button"
-        (click)="onAdd()">Add stock</button>
+        <button 
+        type="button"
+        (click)="onAdd()"
+        [disabled]="stockExists || notSelected">Add stock</button>
+        <div *ngIf="stockExists" class="error">
+            Item already exists in the the stock
+        </div>
     </div>
 </div>

@@ -39,5 +39,16 @@ export class StockSelectorComponent implements OnInit {
     });
     */
   }
+  get stockExists(){ //creates a property on the class called invalid to be used as a flag 
+    return (
+      this.parent.hasError('stockExists') &&
+      this.parent.get("selector.product_id").dirty
+      ); // dirty makes sure the user has entered something
+  }
 
+  get notSelected(){
+    return (
+      !this.parent.get('selector.product_id').value
+      );
+  }
 }

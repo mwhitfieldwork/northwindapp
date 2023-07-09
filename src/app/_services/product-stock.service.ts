@@ -67,6 +67,25 @@ export class ProductStockService {
     return response;
   }
 
+  
+ //check to see if  a Branch exists - 
+ // there is no branches in the database - I might have to create it
+
+ /*
+  checkProductId(id:string):Observable<boolean>{
+    
+    let search = new URLSearchParams();
+    //search.set('id',id);
+    return this._http
+    .get(this.url +id)
+    .pipe().map((response : Response) => response.json())
+    .map((response : any[]) => !!response.length)
+    .catch((error:any) => Observable.throw(error.json))
+    
+   return 
+  }
+  */
+
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error || 'Server error');

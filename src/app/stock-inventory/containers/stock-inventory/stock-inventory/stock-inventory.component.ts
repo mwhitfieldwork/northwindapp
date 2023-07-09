@@ -28,14 +28,14 @@ export class StockInventoryComponent implements OnInit {
         //code:new FormControl(''), long hand
         branch:['', [Validators.required,StockValidators.checkBranch]] ,//Form builder short hand
         code:['', Validators.required] , //Form builder short hand
-      }),
+      }),//form group validator, added at the end of the fb.group 
     selector: this.createStock({}),
     stock:this.fb.array([
       this.createStock({product_id:1,quantity:10}),
       this.createStock({product_id:2,quantity:20}),
     ])
 
-  })
+  },{validators:StockValidators.checkStockExists})
 
   createStock(stock){
     return this.fb.group({
@@ -68,6 +68,16 @@ export class StockInventoryComponent implements OnInit {
     const control = this.form.get('stock') as FormArray;
     control.push(this.createStock(stock));
   }
+
+  /*
+  validateBranch(control: AbstractControl){
+    return this._productsService2
+            .checkBranchId(control.value)
+            .map((response:boolean) =>{
+            return response ? null : {unknownBranch:true})
+          }
+  }
+  */
 
   removeStock({group,index}:{group:FormGroup,index:number}){
     const control = this.form.get('stock') as FormArray;
