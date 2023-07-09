@@ -24,10 +24,11 @@ export class StockSelectorComponent implements OnInit {
   }
 
   onAdd(){
-    this.added.emit(this.parent.get('selector').value);
+    this.added.emit(this.parent.get('selector').value.product_id);
     this.parent.get('selector').reset({// reset changes the dom back to pristine, where set and patch value wont
       product_id:'',
-      quantity:10
+      quantity:10,
+      name:''
     });
     /*
     this.parent.get('selector').setValue({ //updates mulitple controls at once, must have the keyand the value

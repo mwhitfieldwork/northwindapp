@@ -3,7 +3,7 @@
         <select formControlName="product_id">
             <option value="">Select Product</option>
             <option *ngFor="let product of stockProducts" 
-            [value]="product.productId"
+            [ngValue]="product"
             >{{product.productName}}</option>
         </select>
         <!--<input 

@@ -3,7 +3,7 @@
         <div *ngFor="let item of stocks; let i = index">
             <div [formGroupName]="i" class="stock-product__content">
                 <div class="stock-product__name">
-                    {{item.value.product_id}}
+                    {{item.value.name}}
                 </div>
                 <input 
                 type="number"

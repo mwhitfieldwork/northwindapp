@@ -31,8 +31,8 @@ export class StockInventoryComponent implements OnInit {
       }),//form group validator, added at the end of the fb.group 
     selector: this.createStock({}),
     stock:this.fb.array([
-      this.createStock({product_id:1,quantity:10}),
-      this.createStock({product_id:2,quantity:20}),
+      this.createStock({product_id:1,quantity:10, name:'test'}),
+      this.createStock({product_id:2,quantity:20, name:'test'}),
     ])
 
   },{validators:StockValidators.checkStockExists})
@@ -40,7 +40,8 @@ export class StockInventoryComponent implements OnInit {
   createStock(stock){
     return this.fb.group({
       product_id: parseInt(stock.product_id,10) || '',
-      quantity: stock.quantity || 10
+      quantity: stock.quantity || 10,
+      name: stock.name || ''
     });
   }
 
@@ -64,8 +65,13 @@ export class StockInventoryComponent implements OnInit {
     error => this.errorMessage = <any>error)
   }
  
-  addStock(stock){
+  addStock(value){
     const control = this.form.get('stock') as FormArray;
+    let stock = {
+      product_id:value.productId,
+      quantity:this.form.get('selector').value.quantity,
+      name:value.productName
+    }
     control.push(this.createStock(stock));
   }
 
