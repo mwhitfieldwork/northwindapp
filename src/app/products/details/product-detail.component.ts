@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import{Product} from '../../_models/product';
 
@@ -32,7 +32,11 @@ export class ProductDetailComponent implements OnInit {
       unitPrice:['', Validators.required],
       quantity:['', Validators.required],
       rating:['', Validators.required],
-      discontinued:''
+      discontinued:'',
+      store: new FormGroup({
+        branch: new FormControl(''),
+        code: new FormControl('')
+      })
     })
 
     if(this.isEdit){
@@ -79,6 +83,5 @@ export class ProductDetailComponent implements OnInit {
     error => this.errorMessage = <any>error)
     
   }
-
 
   }
