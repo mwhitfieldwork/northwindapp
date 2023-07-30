@@ -4,8 +4,15 @@ import { Component } from '@angular/core';
   selector: 'app-root',
  // templateUrl: './app.component.html',
   template: `<router-outlet></router-outlet>`,
+  //template: `<router-outlet>(activate)="activate($event)" (deactivate)="deactivate($event)"</router-outlet>`, //do something on activate and deactivate
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'nwapp';
+ /* activate(event){
+    console.log(event);
+  }
+  deactivate(event){
+    console.log(event);
+  }*/
 }

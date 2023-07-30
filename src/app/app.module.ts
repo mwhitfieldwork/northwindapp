@@ -35,6 +35,7 @@ const routes : Routes =  [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    //RouterModule.forRoot(routes, {enableTracing: true}), //prints out all of the routes to the console for debugging
     RouterModule.forRoot(routes),
     InMemoryWebApiModule.forRoot(ProductData,{ dataEncapsulation: false,
       passThruUnknownUrl: true }),
