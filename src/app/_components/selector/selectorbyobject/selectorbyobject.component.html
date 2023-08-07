@@ -1,0 +1,8 @@
+<div formGroupName="selector">
+    <select formControlName="selected_element" (change)="selectedItem($event)">
+        <option value="">Select Product</option>
+        <option *ngFor="let item of collection" 
+        [value]="item"
+        >{{item.productName}}</option><!-- should be ngValue-->
+    </select>
+</div>

@@ -13,6 +13,7 @@ import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
 import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
+import { SelectorbyobjectComponent } from './_components/selector/selectorbyobject/selectorbyobject.component';
 
 const routes : Routes =  [
   /*{path:'login',
@@ -30,6 +31,7 @@ const routes : Routes =  [
 @NgModule({
   declarations: [
     AppComponent,
+    SelectorbyobjectComponent,
   ],
   imports: [
     BrowserModule,
