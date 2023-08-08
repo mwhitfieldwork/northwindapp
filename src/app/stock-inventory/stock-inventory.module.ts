@@ -8,6 +8,7 @@ import { StockSelectorComponent } from './components/stock-selector/stock-select
 import { StockInventoryComponent } from './containers/stock-inventory/stock-inventory/stock-inventory.component';
 import { ProductStockService  } from '../_services/product-stock.service';
 import { StockCounterComponent } from './components/stock-counter/stock-counter.component';
+import { SharedComponentsModule } from '../_components/components.module';
 
 const routes:Routes =[
   {path: 'restock', component:StockInventoryComponent}
@@ -23,7 +24,8 @@ const routes:Routes =[
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes) 
+    RouterModule.forChild(routes),
+    SharedComponentsModule
   ],
   exports: [
     StockBranchComponent,

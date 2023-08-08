@@ -10,7 +10,9 @@ import {Product} from '../_models/product';
 //dialog 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog'
 import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray} from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 
+//import 'rxjs/add/operator/filter';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -39,10 +41,20 @@ export class ProductsComponent implements OnInit {
   index:number
   starList:any[]  = [];
 
-  constructor(private _productsService: ProductsService, public dialog: MatDialog) { }
+  constructor(private _productsService: ProductsService, public dialog: MatDialog, private router:Router) { }
 
   ngOnInit(): void {
     this.getProducts();
+    this.router.events
+    //.filter(event => event instanceof NavigationEnd) // this subscribe only gets called when it is a navigtion end event
+    .subscribe(
+      (event) => {
+        console.log('events', event);       // tracks the router events
+       // if(event instanceof NavigationEnd){
+          //console.log(event);
+        //}
+      }
+    )
   }
 
 
@@ -138,6 +150,10 @@ export class ProductsComponent implements OnInit {
     
     getFill(i){
     return 'url(#F1g' + i + ')';
+    }
+
+    selectedItem(value){
+      console.log(value);
     }
 
 }

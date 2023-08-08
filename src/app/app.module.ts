@@ -12,6 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
+import { SharedComponentsModule } from './_components/components.module';
 import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
 
 const routes : Routes =  [
@@ -35,15 +36,19 @@ const routes : Routes =  [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    //RouterModule.forRoot(routes, {enableTracing: true}), //prints out all of the routes to the console for debugging
     RouterModule.forRoot(routes),
     InMemoryWebApiModule.forRoot(ProductData,{ dataEncapsulation: false,
       passThruUnknownUrl: true }),
     ProductsModule,
     DashboardModule,
     LoginModule,
+    SharedComponentsModule,
     StockInventoryModule
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  exports: [SharedComponentsModule],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

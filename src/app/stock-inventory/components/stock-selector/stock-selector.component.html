@@ -6,12 +6,12 @@
             [ngValue]="product"
             >{{product.productName}}</option>
         </select>
-        <!--<input 
-        type="number"
-        step="10"
-        min="10"
-        max="100" 
-        formControlName="quantity">-->
+        
+        <!--<app-selectorbyindex
+        [collection]="stockProducts"
+        (selectedObject)="selectedItem($event)">
+        </app-selectorbyindex>-->
+
         <app-stock-counter
         [step]="10"
         [min]="10"

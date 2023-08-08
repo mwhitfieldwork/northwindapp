@@ -52,4 +52,7 @@ export class StockSelectorComponent implements OnInit {
       !this.parent.get('selector.product_id').value
       );
   }
+  selectedItem($event){
+    console.log($event);
+  }
 }
