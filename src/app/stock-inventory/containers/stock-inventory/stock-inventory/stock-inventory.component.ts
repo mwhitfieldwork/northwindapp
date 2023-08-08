@@ -94,4 +94,9 @@ export class StockInventoryComponent implements OnInit {
   onSubmit(){
     console.log("submit", this.form.value);
   }
+
+  selectedItem(value)
+  {
+    console.log(value);
+  }
 }
