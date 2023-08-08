@@ -13,6 +13,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProductDetailComponent } from './details/product-detail.component'
 import { PhonemaskDirective } from '../_directives/phonemask.directive';
 import { TooltipDirective}from '../_directives/tooltip.directive';
+import { SharedComponentsModule } from '../_components/components.module';
 
 const routes:Routes = [
   {path: '', component: ProductsComponent},
@@ -38,7 +39,8 @@ const routes:Routes = [
     MaterialModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    DashboardModule
+    DashboardModule,
+    SharedComponentsModule
   ]
 })
 export class ProductsModule { }

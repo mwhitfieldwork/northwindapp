@@ -14,8 +14,8 @@ export class SelectorbyobjectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectedItem($event){
-    let item = $event;
+  selectedItem(value: any){
+    let item = value;
     this.selectedObject.emit(item);
   }
 

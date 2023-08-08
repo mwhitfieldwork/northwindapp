@@ -152,6 +152,10 @@ export class ProductsComponent implements OnInit {
     return 'url(#F1g' + i + ')';
     }
 
+    selectedItem(value){
+      console.log(value);
+    }
+
 }
 
 @Component({

@@ -12,8 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
-import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
-import { SelectorbyobjectComponent } from './_components/selector/selectorbyobject/selectorbyobject.component';
+import { SharedComponentsModule } from './_components/components.module';
 
 const routes : Routes =  [
   /*{path:'login',
@@ -31,7 +30,6 @@ const routes : Routes =  [
 @NgModule({
   declarations: [
     AppComponent,
-    SelectorbyobjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +42,10 @@ const routes : Routes =  [
     ProductsModule,
     DashboardModule,
     LoginModule,
-    StockInventoryModule
+    SharedComponentsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  exports: [SharedComponentsModule],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
