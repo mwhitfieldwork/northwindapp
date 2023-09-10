@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../_models/product';
 import { catchError, tap, map } from 'rxjs/operators'
 import { ProductModel } from '../_models/product-model';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,8 +18,7 @@ const httpOptions = {
 })
 
 export class ProductsService {
-  //url: string = 'https://localhost:7216/Product/';
-  url: string = 'https://www.northwindmw.site/Product/';
+  url:string = environment.url;
 
   nwDataChanged: BehaviorSubject<any>;
 
