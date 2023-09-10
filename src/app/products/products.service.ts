@@ -17,7 +17,8 @@ const httpOptions = {
 })
 
 export class ProductsService {
-  url: string = 'https://localhost:7216/Product/';
+  //url: string = 'https://localhost:7216/Product/';
+  url: string = 'https://www.northwindmw.site/Product/';
 
   nwDataChanged: BehaviorSubject<any>;
 

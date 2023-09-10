@@ -57,10 +57,28 @@ export class ProductsComponent implements OnInit {
     )
   }
 
+  /*
+  this is an example of the nature of the observer/observable pattern
+  the observer ahs 3 callbacks which can be called on the subscriber menthod 
+  of the observable as well
+
+  const observer = {
+    next: value => console.log('next', value),
+    error: error => console.log('error', error),
+    complete: () => console.log('complete!')
+  };
+
+  const observable = new Observable(subscriber => {
+      subscriber.next('Hello');
+      subscriber.next('World');
+      subscriber.complete();
+  });
+  */
+
 
   getProducts(){
     this._productsService.getProducts()
-    .subscribe(products => { 
+    .subscribe(products => { // this is the next callback 
       let ratedProducts = this.addRating(products)    
       this.product = ratedProducts;
       this.dataSource = new MatTableDataSource<Product>(ratedProducts);
@@ -68,7 +86,7 @@ export class ProductsComponent implements OnInit {
       this.dataSource.sort = this.sort;
 
     },
-    error => this.errorMessage = <any>error)
+    error => this.errorMessage = <any>error) //this is the error callback
   }
 
   editProduct(product:Product){
