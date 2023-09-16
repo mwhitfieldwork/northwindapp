@@ -27,7 +27,7 @@ export class ProductsService {
   }
 
   getProducts(): Observable<Product[]> {
-    var response = this._http.get<Product[]>(this.url)
+    var response = this._http.get<Product[]>(`${this.url}/Product/`)
       .pipe(
         tap(items => {
           this.nwDataChanged.next(items);

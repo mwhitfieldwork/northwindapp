@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url:'https://www.northwindmw.site/Product/'
+  url:'https://www.northwindmw.site'
 };
