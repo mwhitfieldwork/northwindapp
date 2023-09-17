@@ -11,6 +11,7 @@ import {Product} from '../_models/product';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog'
 import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray} from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 
 //import 'rxjs/add/operator/filter';
 @Component({
@@ -77,8 +78,11 @@ export class ProductsComponent implements OnInit {
 
 
   getProducts(){
-    this._productsService.getProducts()
-    .subscribe(products => { // this is the next callback 
+    this._productsService.getProducts().pipe(
+      map(products => {
+        return products.filter(product => product.isDeleted == false)
+      })
+    ).subscribe(products => { // this is the next callback 
       let ratedProducts = this.addRating(products)    
       this.product = ratedProducts;
       this.dataSource = new MatTableDataSource<Product>(ratedProducts);

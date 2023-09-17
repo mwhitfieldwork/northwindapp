@@ -31,7 +31,7 @@ export class ProductsService {
       .pipe(
         tap(items => {
           this.nwDataChanged.next(items);
-          console.log(items)
+          console.log(this.url)
         }),
         catchError(this.handleError),
       )
