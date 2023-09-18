@@ -30,7 +30,8 @@ export class ProductsComponent implements OnInit {
     'price',
     'discontinued',
     'rating',
-    'edit'
+    'edit',
+    'delete'
   ];
 
   product:Product[];
@@ -89,7 +90,7 @@ export class ProductsComponent implements OnInit {
     error => this.errorMessage = <any>error) //this is the error callback
   }
 
-  editProduct(product:Product){
+  deleteProduct(product:Product){
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '450px',
       data: product
@@ -111,8 +112,8 @@ export class ProductsComponent implements OnInit {
     dialogConfig.maxHeight = 500;
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-     // this.animal = result;
+      //console.log('The dialog was closed');
+      this.getProducts();
     });
   }
 
@@ -182,9 +183,11 @@ export class ProductsComponent implements OnInit {
 })
 export class DialogOverviewExampleDialog implements OnInit{
   customerForm: FormGroup;
+  errorMessage:any;
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    private _productsService: ProductsService,
     @Inject(MAT_DIALOG_DATA) public data:any, private fb:FormBuilder) {}
 
     ngOnInit(){
@@ -211,11 +214,13 @@ export class DialogOverviewExampleDialog implements OnInit{
       })
     }
 
-    save(){
-
+    exit(){
+      this.dialogRef.close();
     }
 
-    deleteProduct(){}
+    deleteProduct(){
+      this._productsService.deleteProduct(this.data.productId);     
+    }
 
   onNoClick(): void {
     this.dialogRef.close();

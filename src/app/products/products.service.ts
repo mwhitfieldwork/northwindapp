@@ -19,6 +19,7 @@ const httpOptions = {
 
 export class ProductsService {
   url:string = environment.url;
+  errorMessage:any;
 
   nwDataChanged: BehaviorSubject<any>;
 
@@ -66,6 +67,12 @@ export class ProductsService {
       //   catchError(this.handleError),
       // )
     return response;
+  }
+
+  deleteProduct(id:number): Observable<void> {
+    let url = this.url+ id;
+    var response = this._http.delete(`${url}`)
+    return 
   }
 
   private handleError(error: Response) {
