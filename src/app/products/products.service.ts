@@ -70,8 +70,9 @@ export class ProductsService {
   }
 
   deleteProduct(id:number): Observable<void> {
-    let url = this.url+ id;
-    var response = this._http.delete(`${url}`)
+    let url = `${this.url}/Product/${id}`;
+    var response = this._http.delete('https://localhost:7216/Product/3')
+    console.log(url);
     return 
   }
 
