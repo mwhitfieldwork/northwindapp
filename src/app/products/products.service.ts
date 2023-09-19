@@ -18,7 +18,7 @@ const httpOptions = {
 })
 
 export class ProductsService {
-  url:string = environment.url;
+  url:string = environment.url + '/Product/';
   errorMessage:any;
 
   nwDataChanged: BehaviorSubject<any>;
@@ -28,7 +28,7 @@ export class ProductsService {
   }
 
   getProducts(): Observable<Product[]> {
-    var response = this._http.get<Product[]>(`${this.url}/Product/`)
+    var response = this._http.get<Product[]>(`${this.url}`)
       .pipe(
         tap(items => {
           this.nwDataChanged.next(items);
@@ -59,6 +59,7 @@ export class ProductsService {
     let url = `${this.url}AddProduct`;
     let newProduct = JSON.stringify(product)
     var response = this._http.post<Product>(url, newProduct, httpOptions);
+    console.log(url);
       // .pipe(
       //   tap(item => {
       //     this.nwDataChanged.next(item);
@@ -70,10 +71,18 @@ export class ProductsService {
   }
 
   deleteProduct(id:number): Observable<void> {
-    let url = `${this.url}/Product/${id}`;
-    var response = this._http.delete('https://localhost:7216/Product/3')
-    console.log(url);
-    return 
+    let url = `${this.url}${id}`;
+    var response = this._http.delete(url)
+    .subscribe({
+      next: data => {
+          console.log( 'Delete successful');
+      },
+      error: error => {
+          this.errorMessage = error.message;
+          console.error('There was an error!', error);
+      }
+    });
+      return 
   }
 
   private handleError(error: Response) {
