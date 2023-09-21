@@ -60,15 +60,17 @@ export class ProductsService {
     let newProduct = JSON.stringify(product)
     var response = this._http.post<Product>(url, newProduct, httpOptions);
     console.log(url);
-      // .pipe(
-      //   tap(item => {
-      //     this.nwDataChanged.next(item);
-      //     console.log(item)
-      //   }),
-      //   catchError(this.handleError),
-      // )
     return response;
   }
+
+  updateProduct(product: ProductModel, productId:string): Observable<Product> {
+    let url = `${this.url}${productId}`;
+    let newProduct = JSON.stringify(product)
+    console.log(url);
+    var response = this._http.put<Product>(url, newProduct, httpOptions);
+    return response;
+  }
+
 
   deleteProduct(id:number): Observable<void> {
     let url = `${this.url}${id}`;
