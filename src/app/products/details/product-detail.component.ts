@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@ang
 import { ActivatedRoute } from '@angular/router';
 import{Product} from '../../_models/product';
 
+import { ProductModel } from '../../_models/product-model';
 import { ProductsService }from '../products.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class ProductDetailComponent implements OnInit {
   errorMessage:string;
   ratedProduct:Product;
   isEdit!:boolean;
+  productId:string;
+  updateProduct:ProductModel
   
 
   constructor(private fb:FormBuilder,
@@ -27,12 +30,8 @@ export class ProductDetailComponent implements OnInit {
 
     this.productForm = this.fb.group({
       productname:['', Validators.required],
-      phone:['', Validators.required],
-      crediCard:['', Validators.required],
       unitPrice:['', Validators.required],
       quantity:['', Validators.required],
-      rating:['', Validators.required],
-      discontinued:'',
       store: new FormGroup({
         branch: new FormControl(''),
         code: new FormControl('')
@@ -46,7 +45,16 @@ export class ProductDetailComponent implements OnInit {
   }
 
   update(productForm){
-    console.log(productForm.value);
+
+    var productUpdate = {...this.updateProduct, "productId": this.productId,
+      "productName": productForm.value.productname,
+      "quantityPerUnit": productForm.value.quantity,
+      "unitPrice": productForm.value.unitPrice}
+
+    //console.log(productForm.value);
+    this._productsService.updateProduct(productUpdate, this.productId).subscribe(product => {
+      console.log(product);
+    })
   }
 
   create(payload){
@@ -71,9 +79,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   callExistingProduct(){
-    let productId = this.route.snapshot.paramMap.get('id');
+    this.productId = this.route.snapshot.paramMap.get('id');
 
-    this._productsService.getProduct(productId).subscribe(product => { 
+    this._productsService.getProduct(this.productId).subscribe(product => { 
       this.ratedProduct = product;
       this.productForm.get('productname').setValue(this.ratedProduct.productName)
       this.productForm.get('quantity').setValue(this.ratedProduct.quantityPerUnit);
