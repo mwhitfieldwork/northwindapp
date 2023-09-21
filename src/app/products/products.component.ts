@@ -102,7 +102,7 @@ export class ProductsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-     // this.animal = result;
+          this.getProducts();
     });
   }
 
@@ -116,13 +116,12 @@ export class ProductsComponent implements OnInit {
     dialogConfig.maxHeight = 500;
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log('The dialog was closed');
-      this.getProducts();
+      console.log('The dialog was closed test');
     });
   }
 
   addRating(products:Product[]){
-    //products.forEach(x => x.rating = this.getRandomInt(1,100))
+    products.forEach(x => x.rating = this.getRandomInt(1,100))
     console.log(products)
     return products;
   }
@@ -194,36 +193,15 @@ export class DialogOverviewExampleDialog implements OnInit{
     private _productsService: ProductsService,
     @Inject(MAT_DIALOG_DATA) public data:any, private fb:FormBuilder) {}
 
-    ngOnInit(){
-      console.log(this.data)
-      this.customerForm = this.fb.group({
-        productName: ['',[Validators.required, Validators.minLength(50)]],
-        company: ['',[Validators.required, Validators.maxLength(50)]],
-        title: ['',[Validators.required, Validators.maxLength(50)]],
-      })
-
-      //Edit or Create
-      if(this.data.id == 0) {
-        //this.initializeProduct();
-      }else{
-        this.getProductInfo(this.data.id);
-      }
-    }
-
-    getProductInfo(id:number){
-      this.customerForm.setValue({
-        productName: this.data.productName,
-        price: this.data.price,
-        description: this.data.description,
-      })
-    }
+    ngOnInit(){}
 
     exit(){
       this.dialogRef.close();
     }
 
     deleteProduct(){
-      this._productsService.deleteProduct(this.data.productId);     
+      this._productsService.deleteProduct(this.data.productId)
+      this.dialogRef.close(); 
     }
 
   onNoClick(): void {
