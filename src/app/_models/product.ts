@@ -17,4 +17,5 @@ export interface Product {
     unitsInStock: number;
     unitsOnOrder: number;
     isDeleted:boolean;
+    rating:number;
 }
