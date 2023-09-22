@@ -5,6 +5,7 @@ import { Product } from '../_models/product';
 import { catchError, tap, map } from 'rxjs/operators'
 import { ProductModel } from '../_models/product-model';
 import { environment } from '../../environments/environment';
+import { Category } from '../_models/category';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +19,7 @@ const httpOptions = {
 })
 
 export class ProductsService {
-  url:string = environment.url + '/Product/';
+  url:string = environment.url ;
   errorMessage:any;
 
   nwDataChanged: BehaviorSubject<any>;
@@ -28,7 +29,20 @@ export class ProductsService {
   }
 
   getProducts(): Observable<Product[]> {
-    var response = this._http.get<Product[]>(`${this.url}`)
+    var response = this._http.get<Product[]>(`${this.url}/Product/`)
+      .pipe(
+        tap(items => {
+          this.nwDataChanged.next(items);
+          console.log(this.url)
+        }),
+        catchError(this.handleError),
+      )
+
+    return response
+  }
+
+  getCategories(): Observable<Category[]> {
+    var response = this._http.get<Category[]>(`${this.url}/Category/`)
       .pipe(
         tap(items => {
           this.nwDataChanged.next(items);
@@ -41,7 +55,7 @@ export class ProductsService {
   }
 
   getProduct(productId: string): Observable<Product> {
-    let url = `${this.url}${productId}`;
+    let url = `${this.url}/Product/${productId}`;
     var response = this._http.get<Product>(url)
       .pipe(
         tap(item => {
@@ -56,7 +70,7 @@ export class ProductsService {
 
 
   createProduct(product: ProductModel): Observable<Product> {
-    let url = `${this.url}AddProduct`;
+    let url = `${this.url}/Product/AddProduct`;
     let newProduct = JSON.stringify(product)
     var response = this._http.post<Product>(url, newProduct, httpOptions);
     console.log(url);
@@ -64,7 +78,7 @@ export class ProductsService {
   }
 
   updateProduct(product: ProductModel, productId:string): Observable<Product> {
-    let url = `${this.url}${productId}`;
+    let url = `${this.url}/Product/${productId}`;
     let newProduct = JSON.stringify(product)
     console.log(url);
     var response = this._http.put<Product>(url, newProduct, httpOptions);
@@ -73,7 +87,7 @@ export class ProductsService {
 
 
   deleteProduct(id:number): Observable<void> {
-    let url = `${this.url}${id}`;
+    let url = `${this.url}/Product/${id}`;
     var response = this._http.delete(url)
     .subscribe({
       next: data => {
