@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import{Product} from '../../_models/product';
 
 import { ProductModel } from '../../_models/product-model';
 import { ProductsService }from '../products.service';
+import { Category } from 'src/app/_models/category';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,20 +19,23 @@ export class ProductDetailComponent implements OnInit {
   ratedProduct:Product;
   isEdit!:boolean;
   productId:string;
-  updateProduct:ProductModel
+  updateProduct:ProductModel;
+  categories:Category[];
   
 
   constructor(private fb:FormBuilder,
               private route:ActivatedRoute,
+              private router:Router,
               private _productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.isEdit = this.route.snapshot.data.isEdit;
-
+    this.getCategories();
     this.productForm = this.fb.group({
       productname:['', Validators.required],
       unitPrice:['', Validators.required],
       quantity:['', Validators.required],
+      category:['', Validators.required],
       store: new FormGroup({
         branch: new FormControl(''),
         code: new FormControl('')
@@ -41,7 +45,14 @@ export class ProductDetailComponent implements OnInit {
     if(this.isEdit){
       this.callExistingProduct();
     }
-    
+
+  }
+
+  getCategories(){
+    this._productsService.getCategories().subscribe(categories => {
+      this.categories = categories;
+      console.log(this.categories);
+    })
   }
 
   update(productForm){
@@ -49,11 +60,13 @@ export class ProductDetailComponent implements OnInit {
     var productUpdate = {...this.updateProduct, "productId": this.productId,
       "productName": productForm.value.productname,
       "quantityPerUnit": productForm.value.quantity,
-      "unitPrice": productForm.value.unitPrice}
+      "unitPrice": productForm.value.unitPrice,
+      "CategoryId": productForm.value.category}
 
     //console.log(productForm.value);
     this._productsService.updateProduct(productUpdate, this.productId).subscribe(product => {
       console.log(product);
+      this.router.navigate(['/products']);
     })
   }
 
@@ -75,6 +88,7 @@ export class ProductDetailComponent implements OnInit {
 
     this._productsService.createProduct(newProduct).subscribe(product => {
       console.log(product); 
+      this.router.navigate(['/products']);
     });
   }
 
