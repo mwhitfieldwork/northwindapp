@@ -52,12 +52,14 @@ export class ProductDetailComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    /*
     const productNameChange$ = fromEvent(
       this.productForm.get('unitPrice').value,
       'valueChange'
     );
 
-    productNameChange$.subscribe((value) => console.log(value));
+    productNameChange$.subscribe((value) => console.log(value)); 
+    */
   }
 
   getCategories(){

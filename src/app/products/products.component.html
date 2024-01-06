@@ -1,6 +1,7 @@
 <app-nav></app-nav>
 <div id="main-wrapper">
   <div>
+    <ng-container *ngIf="products$">
     <mat-table mat-table [dataSource]="dataSource" matSort class="table-mat mat-elevation-z8">
 
       <ng-container matColumnDef="displayName">
@@ -54,6 +55,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </mat-table>
+    </ng-container>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"  showFirstLastButtons></mat-paginator>
 

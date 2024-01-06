@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,6 +12,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angula
 import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray} from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 //import 'rxjs/add/operator/filter';
 @Component({
@@ -19,7 +20,7 @@ import { filter, map } from 'rxjs/operators';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, {static: true})
   paginator: MatPaginator;
 
@@ -35,9 +36,10 @@ export class ProductsComponent implements OnInit {
     'delete'
   ];
 
-  product:Product[];
+
+  products$: Observable<Product[]>;
+  dataSource: MatTableDataSource<Product> = new MatTableDataSource();
   errorMessage:any;
-  dataSource: MatTableDataSource<Product>
   productID:number;
   stars:string[] = [];
   index:number
@@ -46,6 +48,8 @@ export class ProductsComponent implements OnInit {
   constructor(private _productsService: ProductsService, public dialog: MatDialog, private router:Router) { }
 
   ngOnInit(): void {
+    this.products$ = this.getProducts();
+    /*
     this.getProducts();
     this.router.events
     //.filter(event => event instanceof NavigationEnd) // this subscribe only gets called when it is a navigtion end event
@@ -57,6 +61,7 @@ export class ProductsComponent implements OnInit {
         //}
       }
     )
+    */
   }
 
   /*
@@ -76,8 +81,15 @@ export class ProductsComponent implements OnInit {
       subscriber.complete();
   });
   */
+  ngAfterViewInit() {
+    this.products$.subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
 
-
+  /*
   getProducts(){
     this._productsService.getProducts().pipe(
       map(products => {
@@ -92,6 +104,13 @@ export class ProductsComponent implements OnInit {
 
     },
     error => this.errorMessage = <any>error) //this is the error callback
+  }
+  */
+
+  getProducts(): Observable<Product[]> {
+    return this._productsService.getProducts().pipe(
+      map(products => this.addRating(products))
+    );
   }
 
   deleteProduct(product:Product){
@@ -108,7 +127,7 @@ export class ProductsComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: this.product
+      data: this.products$
     });
 
     const dialogConfig = new MatDialogConfig();
