@@ -6,7 +6,8 @@ import{Product} from '../../_models/product';
 import { ProductModel } from '../../_models/product-model';
 import { ProductsService }from '../products.service';
 import { Category } from 'src/app/_models/category';
-import { fromEvent } from 'rxjs';
+import { fromEvent,Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -22,6 +23,7 @@ export class ProductDetailComponent implements OnInit, AfterViewInit {
   productId:string;
   updateProduct:ProductModel;
   categories:Category[];
+  categories$:Observable<Category[]>;
   
 
   constructor(private fb:FormBuilder,
@@ -31,7 +33,7 @@ export class ProductDetailComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isEdit = this.route.snapshot.data.isEdit;
-    this.getCategories();
+    this.categories$ = this.getCategories();
     this.productForm = this.fb.group({
       productname:['', Validators.required],
       unitPrice:['', Validators.required],
@@ -62,11 +64,14 @@ export class ProductDetailComponent implements OnInit, AfterViewInit {
     */
   }
 
-  getCategories(){
-    this._productsService.getCategories().subscribe(categories => {
-      this.categories = categories;
-      console.log(this.categories);
-    })
+  getCategories():Observable<Category[]>{
+    return this._productsService.getCategories().pipe(
+      catchError(error => {
+        this.errorMessage = error;
+        // Handle or log the error
+        return throwError(error);
+      })
+    );
   }
 
   update(productForm){
