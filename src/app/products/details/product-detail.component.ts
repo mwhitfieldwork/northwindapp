@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import{Product} from '../../_models/product';
@@ -6,13 +6,14 @@ import{Product} from '../../_models/product';
 import { ProductModel } from '../../_models/product-model';
 import { ProductsService }from '../products.service';
 import { Category } from 'src/app/_models/category';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, AfterViewInit {
 
   productForm:FormGroup;
   errorMessage:string;
@@ -46,6 +47,17 @@ export class ProductDetailComponent implements OnInit {
       this.callExistingProduct();
     }
 
+    this.productForm.get('productname').valueChanges.subscribe( x => console.log(x));
+
+  }
+
+  ngAfterViewInit() {
+    const productNameChange$ = fromEvent(
+      this.productForm.get('unitPrice').value,
+      'valueChange'
+    );
+
+    productNameChange$.subscribe((value) => console.log(value));
   }
 
   getCategories(){
