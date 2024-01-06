@@ -45,7 +45,7 @@
           <select formControlName="category">
             <option value="">Select Product</option>
             <option *ngFor="let category of categories$ | async" 
-            [value]="category.categoryId"
+            [ngValue]="category.categoryId"
             >{{category.categoryName}}</option>
           </select>
         </div>
