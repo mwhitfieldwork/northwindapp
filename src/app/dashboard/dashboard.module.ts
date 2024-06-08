@@ -6,6 +6,7 @@ import { DashboardService } from './dashboard.service';
 import { RouterModule, Routes } from '@angular/router';
 import { NavComponent } from '../nav/nav.component';
 import { ConversionPipe } from '../_pipes/conversion.pipe';
+import { SharedComponentsModule } from '../_components/components.module';
 
 const routes:Routes =[
   {path: 'dashboard', component:DashboardComponent}
@@ -21,6 +22,7 @@ const routes:Routes =[
   imports: [
     CommonModule,
     MaterialModule,
+    SharedComponentsModule,
     RouterModule.forChild(routes)
   ],
   exports:[

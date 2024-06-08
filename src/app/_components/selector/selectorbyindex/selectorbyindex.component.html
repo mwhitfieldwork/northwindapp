@@ -4,6 +4,6 @@
         <option value="">Select Product</option>
         <option *ngFor="let item of collection; let i= index;" 
         [value]="i"
-        >{{item.productName}}</option>
+        >{{item.productName || item.name}}</option>
     </select>
 </div>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ContentChild, OnInit } from '@angular/core';
 import {IProducts } from '../products/products';
 import { ProductsService } from '../products/products.service';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { ConversionPipe } from '../_pipes/conversion.pipe'; /// to use the pipe as a Provider
+import {BarGraphComponent} from '../_components/graphs/bar-graph/bar-graph.component';
 
 interface File {
   name: string,
@@ -35,6 +36,9 @@ export class DashboardComponent implements OnInit {
   midcount:number = 50
   files: File[];
   mapped: File[];
+  item: File;
+
+  @ContentChild(BarGraphComponent) barGraph: BarGraphComponent;
 
   constructor(private _productsService :ProductsService,private conversionPipe:ConversionPipe 
     ) { 
@@ -77,7 +81,7 @@ export class DashboardComponent implements OnInit {
     const allInterests:string[] = [];
     const allInterestPercentages = [];
 
-    this.dashboardData.forEach( interests => {
+    /*this.dashboardData.forEach( interests => {
       interests.interests.forEach(interest => { 
         //get list of all interest names
         allInterests.push(interest);
@@ -86,7 +90,7 @@ export class DashboardComponent implements OnInit {
           interestNames.push(interest)
         }
       });
-    })
+    })*/
     
      
 
@@ -130,7 +134,7 @@ export class DashboardComponent implements OnInit {
     const allSkills:string[] = [];
     const allSkillsPercentages = [];
 
-    this.dashboardData.forEach( skills => {
+    /*this.dashboardData.forEach( skills => {
       skills.skills.forEach(skills => { 
         //get list of all interest names
         allSkills.push(skills);
@@ -139,7 +143,7 @@ export class DashboardComponent implements OnInit {
           skillsNames.push(skills)
         }
       });
-    })
+    })*/
     
      
 

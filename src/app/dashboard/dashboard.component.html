@@ -2,30 +2,20 @@
 <main class="main-wrapper">
         <section class="graphs" *ngIf="popularInterests">
             <div class="page bar-graphs">
-                <!-- <div  class="data__vertical data-visual-wrapper">
-                    <mat-card class="card card__interests">
-                        <mat-card-title>Interests</mat-card-title>
-                            <article *ngFor="let interest of popularInterests" class="data-visual">
-                                <div class="demographic-wrapper"><span class="bar-name">{{interest.name}}</span><div class="bar-wrapper"><div class="bar" [ngStyle]="{'height' : '30px', 'width' : interest.count + '%'}"><span>{{interest.count}}</span></div></div></div>
-                            </article>
-                    </mat-card>
-                </div> -->
+                <div  class="graph-data">
+                    <bar-graph>
+                        <h3>Popular Interests</h3>
+                        <component-child
+                        [name]="'Unpopular Interests'"></component-child>
+                    </bar-graph>
+                </div>
 
                 <div  class="data__horizontal data-visual-wrapper ">
-                    <mat-card class="skills card__skills">
-                        <mat-card-title>Skills</mat-card-title>
-                        <div class="verticle-graph">
-                            <div class="verticle-graph-line">{{maxcount}}<div class="graph-line"></div></div>
-                            <div class="verticle-graph-line">{{midcount}}<div class="graph-line"></div></div>
-                            <div class="verticle-graph-line">{{mincount}}<div class="graph-line"></div></div>
-                        </div> 
-                       <div class="skills-container">
-                            <article *ngFor="let skill of popularSkills" class="data-skills-visual">
-                                <div class="bar-wrapper"><div class="skills-bar" [ngStyle]="{'height' : skill.count + '%', 'width' : '35px'}"><span></span></div></div>
-                                <span class="bar-title">{{skill.name}} </span>
-                            </article>
-                        </div>
-                    </mat-card>
+                    <bar-graph>
+                        <h3>Popular Interests</h3>
+                        <component-child
+                        [name]="'My Popular Interests'"></component-child>
+                    </bar-graph>
                 </div>
             </div>
         </section>
