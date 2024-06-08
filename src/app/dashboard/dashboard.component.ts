@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
     const allInterests:string[] = [];
     const allInterestPercentages = [];
 
-    this.dashboardData.forEach( interests => {
+    /*this.dashboardData.forEach( interests => {
       interests.interests.forEach(interest => { 
         //get list of all interest names
         allInterests.push(interest);
@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
           interestNames.push(interest)
         }
       });
-    })
+    })*/
     
      
 
@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit {
     const allSkills:string[] = [];
     const allSkillsPercentages = [];
 
-    this.dashboardData.forEach( skills => {
+    /*this.dashboardData.forEach( skills => {
       skills.skills.forEach(skills => { 
         //get list of all interest names
         allSkills.push(skills);
@@ -143,7 +143,7 @@ export class DashboardComponent implements OnInit {
           skillsNames.push(skills)
         }
       });
-    })
+    })*/
     
      
 

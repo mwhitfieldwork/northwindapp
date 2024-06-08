@@ -12,12 +12,11 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
   constructor() { }
   @Input() data:unknown[];
 
-  @ContentChild(ComponentchildComponent) componentChild:ComponentchildComponent
-  hasName:boolean;
+
   ngOnInit(): void {
   }
   ngAfterViewInit(): void { 
-    this.componentChild && this.componentChild.name ? this.hasName = true : this.hasName = false
+
   }
 
 }

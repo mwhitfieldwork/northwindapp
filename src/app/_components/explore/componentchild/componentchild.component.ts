@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'componentchild',
+  selector: 'component-child',
   templateUrl: './componentchild.component.html',
   styleUrls: ['./componentchild.component.css']
 })
